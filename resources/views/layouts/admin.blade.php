@@ -18,11 +18,13 @@
     @include('admin.partials.header')
 
     <div class="main-wrapper d-flex">
-        @include('admin.partials.sidebar')
-        @yield('content')
-    </div>
 
-    @yield('content')
+        @include('admin.partials.sidebar')
+
+        <div class="content-container d-flex flex-column">
+          @yield('content')
+        </div>
+    </div>
 
 </body>
 </html>
