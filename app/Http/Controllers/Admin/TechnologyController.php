@@ -46,7 +46,7 @@ class TechnologyController extends Controller
             $new_technology->name = $request->name;
             $new_technology->slug = Str::slug($request->name, '-');
             $new_technology->save();
-            return redirect()->route('admin.technologies.index')->whit('success', 'Tecnologia creata con successo');
+            return redirect()->route('admin.technologies.index')->with('success', 'Tecnologia creata con successo');
         }
     }
 
@@ -79,9 +79,9 @@ class TechnologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Technology $techology)
     {
-        //
+
     }
 
     /**
