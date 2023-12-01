@@ -55,7 +55,7 @@
                                 >
                                     @csrf
                                     @method('PUT')
-                                    <input type="text" class="form-hidden" value={{ $technology->name }}" name="name"/>
+                                    <input type="text" class="form-hidden" value="{{ $technology->name }}" name="name"/>
                                 </form>
                             <td>
 
@@ -64,7 +64,7 @@
                                 <button onclick="submitForm()" class="btn btn-outline-secondary" id="button-addon2"><i class="fa-solid fa-pencil"></i></button>
 
                                 @include('admin.partials.form-delete',[
-                                    'route' => route('admin.projects.destroy', $technology),
+                                    'route' => route('admin.technologies.destroy', $technology),
                                     'message' => 'sei sicuro di voler eliminare?'
                                 ])
 

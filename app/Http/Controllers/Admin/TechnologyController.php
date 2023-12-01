@@ -114,9 +114,9 @@ class TechnologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Technology $techology)
+    public function destroy(Technology $technology)
     {
-        $techology->delete();
+        $technology->delete();
         return redirect()->route('admin.technologies.index')->with('success', 'Tecnologia eliminata');
     }
 }
