@@ -16,6 +16,7 @@
                     <tr>
                         <td >{{ $project->title }}</td>
                         <td><a href="{{route('admin.projects.show', $project)}}"><i class="fa-solid fa-eye"></i></a></td>
+                        <td><a href="{{route('admin.projects.edit', $project)}}"><i class="fa-solid fa-pencil"></i></a></td>
                     </tr>
                 @endforeach
             </tbody>

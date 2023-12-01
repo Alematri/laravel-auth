@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Technology;
 use Illuminate\Support\Str;
+use App\Functions\Helper;
 
 class TechnologyController extends Controller
 {
@@ -79,8 +80,31 @@ class TechnologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Technology $techology)
+    public function update(Request $request, Technology $techology)
     {
+        //validazione
+        $val_data = $request->validate([
+            'name' => 'required|min:2|max:20',
+        ],[
+            'name.required' => 'devi inserire il nome nella tecnologia',
+            'name.min' => 'il nome deve avere almeno 2 caratteri',
+            'name.max' => 'il nome deve avere max 20 caratteri',
+        ]);
+
+        //controllo univocità
+        $exist = Technology::where('name', $request->name)->first();
+        if ($exist){
+            return redirect()->route('admin.technologies.index')->with('error', 'Tecnologia già presente');
+        }
+
+        //generazione slug
+        $val_data['slug']= Helper::generateSlug($request->name, Technology::class);
+
+        //update
+        $techology->update($val_data);
+
+        //reindirizzo alla index
+        return redirect()->route('admin.technologies.index')->with('success', 'Tecnologia aggiornata');
 
     }
 
@@ -92,7 +116,7 @@ class TechnologyController extends Controller
      */
     public function destroy(Technology $techology)
     {
-        $techology -> delete();
-        return redirect()->route('admin.technologies.index')->with('succes', 'Tecnologia eliminata');
+        $techology->delete();
+        return redirect()->route('admin.technologies.index')->with('success', 'Tecnologia eliminata');
     }
 }

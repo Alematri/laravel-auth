@@ -31,6 +31,16 @@ aside{
 .content-container{
     height: calc(100vh - 60px);
     width: calc(100% - 120px);
+    padding-left: 20px;
+    padding-top: 20px;
+    overflow-y: scroll;
+    .form-hidden{
+        border: none;
+        &:focus{
+            border: none;
+            outline: none;
+        }
+    }
 
     table{
         height: 100%;
